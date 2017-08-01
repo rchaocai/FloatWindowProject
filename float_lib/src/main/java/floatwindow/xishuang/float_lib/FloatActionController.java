@@ -7,8 +7,8 @@ import floatwindow.xishuang.float_lib.service.FloatMonkService;
 
 /**
  * Author:xishuang
- * Date:2017.07.13
- * Des:小和尚每日任务模块路由跳转方法的实现类
+ * Date:2017.08.01
+ * Des:与悬浮窗交互的控制类，真正的实现逻辑不在这
  */
 public class FloatActionController {
 

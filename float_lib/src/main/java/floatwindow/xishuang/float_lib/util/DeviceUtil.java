@@ -6,13 +6,11 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.telephony.TelephonyManager;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import java.util.List;
-import java.util.Locale;
 
 public class DeviceUtil {
 
@@ -33,62 +31,11 @@ public class DeviceUtil {
     }
 
     /**
-     * 获取手机型号
-     */
-    public static String getDeviceModel() {
-        return Build.MODEL;
-    }
-
-    /**
-     * 获取手机厂商
-     */
-    public static String getDeviceManufacturer() {
-        return Build.MANUFACTURER;
-    }
-
-    /**
-     * 获取当前设备所在的地区
-     */
-    public static String getDeviceCountry(Context context) {
-        Locale locale = context.getResources().getConfiguration().locale;
-        return locale.getCountry();
-    }
-
-    /**
-     * 获取设备当前的使用的语言信息
-     */
-    public static String getDeviceLanguage(Context context) {
-        Locale locale = context.getResources().getConfiguration().locale;
-        return locale.getLanguage();
-    }
-
-    /**
-     * 获取运营商的名字
-     */
-    public static String getNetworkOperatorName(Context var0) {
-        try {
-            TelephonyManager tm = (TelephonyManager) var0.getSystemService(Context.TELEPHONY_SERVICE);
-            return tm == null ? "Unknown" : tm.getNetworkOperatorName();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Unknown";
-        }
-    }
-
-    /**
      * 获取Java Object Heap的大小
      */
     public static int getMemorySize(Context context) {
         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         return manager.getMemoryClass();
-    }
-
-    /**
-     * 检测是否有这个权限
-     */
-    private static boolean checkPermission(Context context, String permission) {
-        PackageManager packageManager = context.getPackageManager();
-        return packageManager.checkPermission(permission, context.getPackageName()) == 0;
     }
 
     /**

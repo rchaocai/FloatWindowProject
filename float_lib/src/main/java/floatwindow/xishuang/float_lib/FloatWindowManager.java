@@ -15,10 +15,9 @@ import floatwindow.xishuang.float_lib.view.FloatLayout;
 
 /**
  * Author:xishuang
- * Date:2017.07.31
- * Des:悬浮窗统一管理
+ * Date:2017.08.01
+ * Des:悬浮窗统一管理，与悬浮窗交互的真正实现
  */
-
 public class FloatWindowManager {
     /**
      * 悬浮窗

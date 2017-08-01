@@ -3,52 +3,32 @@ package floatwindow.xishuang.float_lib.service;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
+import floatwindow.xishuang.float_lib.FloatActionController;
 import floatwindow.xishuang.float_lib.FloatCallBack;
 import floatwindow.xishuang.float_lib.FloatWindowManager;
-import floatwindow.xishuang.float_lib.FloatActionController;
 import floatwindow.xishuang.float_lib.receiver.HomeWatcherReceiver;
 
+/**
+ * 悬浮窗在服务中创建，通过暴露接口FloatCallBack与Activity进行交互
+ */
 public class FloatMonkService extends Service implements FloatCallBack {
-    /**
-     * 时间周期
-     */
-    private static final long PERIOD = 1000 * 60;
     /**
      * home键监听
      */
     private HomeWatcherReceiver mHomeKeyReceiver;
-    private Handler mHandler;
-    private Timer mTimer;
 
     @Override
     public void onCreate() {
         super.onCreate();
         FloatActionController.getInstance().registerCallLittleMonk(this);
-        mHandler = new Handler();
         //注册广播接收者
         mHomeKeyReceiver = new HomeWatcherReceiver();
         final IntentFilter homeFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
         registerReceiver(mHomeKeyReceiver, homeFilter);
         //初始化悬浮窗UI
         initWindowData();
-        //开始佛语
-        startFoYU();
-    }
-
-    /**
-     * 执行定时弹出佛语的任务
-     */
-    private void startFoYU() {
-        mTimer = new Timer();
-        ShowFoYuTask task = new ShowFoYuTask();
-        mTimer.schedule(task, PERIOD, PERIOD);
     }
 
     @Override
@@ -71,10 +51,6 @@ public class FloatMonkService extends Service implements FloatCallBack {
         //注销广播接收者
         if (null != mHomeKeyReceiver) {
             unregisterReceiver(mHomeKeyReceiver);
-        }
-        //销毁的时候取消定时器
-        if (mTimer != null) {
-            mTimer.cancel();
         }
     }
 
@@ -117,25 +93,4 @@ public class FloatMonkService extends Service implements FloatCallBack {
     public void setObtainNumber(int number) {
         FloatWindowManager.setObtainNumber(this, number);
     }
-
-    /**
-     * 定时任务，隔一段时间弹出佛语
-     */
-    public class ShowFoYuTask extends TimerTask {
-        @Override
-        public void run() {
-            Message msg = Message.obtain();
-            msg.what = 1;
-            mShowFoHandler.sendMessage(msg);
-        }
-    }
-
-    private Handler mShowFoHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == 1) {
-                guideUser(5);
-            }
-        }
-    };
 }
