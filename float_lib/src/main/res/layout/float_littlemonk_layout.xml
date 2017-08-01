@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dfv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/monk_relative_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/float_id"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical|end"
+            android:scaleType="center"
+            android:src="@drawable/little_monk" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <floatwindow.xishuang.float_lib.view.DraggableFlagView
+            android:id="@+id/main_dfv"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_gravity="end"
+            dfv:color1="#FF3B30" />
+    </FrameLayout>
+
+
+</FrameLayout>
