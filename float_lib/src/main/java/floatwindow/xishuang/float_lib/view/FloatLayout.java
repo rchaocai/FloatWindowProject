@@ -17,7 +17,6 @@ import floatwindow.xishuang.float_lib.R;
  * Date:2017.08.01
  * Des:悬浮窗的布局
  */
-
 public class FloatLayout extends FrameLayout {
     private final WindowManager mWindowManager;
     private final ImageView mFloatView;

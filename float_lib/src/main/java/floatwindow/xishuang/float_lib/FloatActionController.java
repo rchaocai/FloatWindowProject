@@ -24,10 +24,10 @@ public class FloatActionController {
         private static final FloatActionController sInstance = new FloatActionController();
     }
 
-    private FloatCallBack mCallLittleMonk;
+    private FloatCallBack mFloatCallBack;
 
     /**
-     * 开启小和尚服务悬浮窗
+     * 开启服务悬浮窗
      */
     public void startMonkServer(Context context) {
         Intent intent = new Intent(context, FloatMonkService.class);
@@ -35,7 +35,7 @@ public class FloatActionController {
     }
 
     /**
-     * 关闭小和尚服务悬浮窗
+     * 关闭悬浮窗
      */
     public void stopMonkServer(Context context) {
         Intent intent = new Intent(context, FloatMonkService.class);
@@ -43,47 +43,47 @@ public class FloatActionController {
     }
 
     /**
-     * 注册小和尚的监听
+     * 注册监听
      */
     public void registerCallLittleMonk(FloatCallBack callLittleMonk) {
-        mCallLittleMonk = callLittleMonk;
+        mFloatCallBack = callLittleMonk;
     }
 
     /**
      * 调用引导的方法
      */
     public void callGuide(int type) {
-        if (mCallLittleMonk == null) return;
-        mCallLittleMonk.guideUser(type);
+        if (mFloatCallBack == null) return;
+        mFloatCallBack.guideUser(type);
     }
 
     /**
      * 悬浮窗的显示
      */
     public void show() {
-        if (mCallLittleMonk == null) return;
-        mCallLittleMonk.show();
+        if (mFloatCallBack == null) return;
+        mFloatCallBack.show();
     }
 
     /**
      * 悬浮窗的隐藏
      */
     public void hide() {
-        if (mCallLittleMonk == null) return;
-        mCallLittleMonk.hide();
+        if (mFloatCallBack == null) return;
+        mFloatCallBack.hide();
     }
     /**
-     * 增加可领取的数量
+     * 增加数量
      */
     public void addObtainNumer() {
-        if (mCallLittleMonk == null) return;
-        mCallLittleMonk.addObtainNumer();
+        if (mFloatCallBack == null) return;
+        mFloatCallBack.addObtainNumer();
     }
     /**
-     * 设置可领取的数量
+     * 设置数量
      */
     public void setObtainNumber(int number) {
-        if (mCallLittleMonk == null) return;
-        mCallLittleMonk.setObtainNumber(number);
+        if (mFloatCallBack == null) return;
+        mFloatCallBack.setObtainNumber(number);
     }
 }

@@ -78,7 +78,7 @@ public class FloatMonkService extends Service implements FloatCallBack {
     }
 
     /**
-     * 添加可领取的数量
+     * 添加数量
      */
     @Override
     public void addObtainNumer() {
@@ -87,7 +87,7 @@ public class FloatMonkService extends Service implements FloatCallBack {
     }
 
     /**
-     * 减少可领取的数量
+     * 减少数量
      */
     @Override
     public void setObtainNumber(int number) {
